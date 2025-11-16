@@ -575,8 +575,18 @@ function propagateItemsByPositionIndex(arr) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray(/* arr, n */) {
-  throw new Error('Not implemented');
+function shiftArray(arr, n) {
+  const arrLength = arr.length;
+  let N = n;
+
+  if (arrLength === 0 || n === 0) return arr;
+
+  N %= arrLength;
+
+  if (N < 0) {
+    N += arrLength;
+  }
+  return arr.slice(arrLength - N).concat(arr.slice(0, arrLength - N));
 }
 
 /**
